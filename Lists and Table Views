@@ -1,0 +1,7 @@
+// Customize the background for a list 
+// put this in the contentView Struct
+init() {
+        UITableView.appearance().backgroundColor = UIColor.clear
+        UITableView.appearance().backgroundView = .none
+    }
+   
