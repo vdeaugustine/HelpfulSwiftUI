@@ -22,7 +22,6 @@ struct ContentView: View {
             .trim(from: 0, to: trimEnd)
             .stroke(lineWidth: 4)
             .frame(width: 300, height: 300)
-//            .rotationEffect(.degrees(45))
             .animation(animation, value: rotate)
             .onAppear() {
                 withAnimation(animation, {
