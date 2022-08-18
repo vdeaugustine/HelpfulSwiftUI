@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     @State private var pct: Double = 0.0
     let duration: Double = 3
     var animation: Animation {
         return .linear(duration: duration).repeatForever(autoreverses: false)
     }
+
     @State private var trimEnd: CGFloat = 0
     @State private var rotate: Bool = false
 
@@ -22,14 +22,13 @@ struct ContentView: View {
             .trim(from: 0, to: trimEnd)
             .stroke(lineWidth: 4)
             .frame(width: 300, height: 300)
-            .animation(animation, value: rotate)
-            .onAppear() {
-                withAnimation(animation, {
+            .rotationEffect(rotate ? .degrees(-360) : .degrees(0))
+            .onAppear {
+                withAnimation(animation) {
                     trimEnd = 1
-                })
-                rotate.toggle()
+                    rotate.toggle()
+                }
             }
-                
     }
 }
 
@@ -55,13 +54,10 @@ struct coolCheckMark: Shape {
         p.move(to: .init(x: rect.width / 4, y: rect.maxY * 0.75))
         p.addLine(to: .init(x: rect.midX, y: rect.maxY))
         p.addArc(center: center, radius: radius, startAngle: .degrees(angle), endAngle: .degrees(angle + 0.0000000000001), clockwise: true)
-        
+
         return p
     }
-    
-    
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
